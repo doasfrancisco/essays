@@ -52,6 +52,12 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </time>
                   </dd>
                 </div>
+                <div className="text-left">
+                  <dt className="sr-only">Author</dt>
+                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                    Author: {authorDetails.map((author) => author.name).join(', ')}
+                  </dd>
+                </div>
               </dl>
             </div>
           </header>
