@@ -23,8 +23,8 @@ export default function Home({ posts }) {
           {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags } = post
             const dateObj = new Date(date)
-            const options = { year: 'numeric', month: 'long' }
-            const formattedDate = dateObj.toLocaleDateString('en-US', options)
+            const dateTemplate: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' }
+            const formattedDate = dateObj.toLocaleDateString('en-US', dateTemplate)
             if (slug === 'why syntax failed') return null
             return (
               <li key={slug} className="py-12">
