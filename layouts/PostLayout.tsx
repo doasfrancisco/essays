@@ -57,6 +57,12 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                     Author: {authorDetails.map((author) => author.name).join(', ')}
                   </dd>
+                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                    Original:{' '}
+                    <a href="https://www.paulgraham.com/do.html">
+                      https://www.paulgraham.com/do.html
+                    </a>
+                  </dd>
                 </div>
               </dl>
             </div>
