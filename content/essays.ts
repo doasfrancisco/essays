@@ -24,7 +24,7 @@ const lead = (leadText: string, text: string): Block => ({ type: "lead", lead: l
 
 const essays: Essay[] = [
   {
-    slug: "why-programming-languages-fail-i",
+    slug: "lang",
     title: "Why Programming Languages Fail I",
     date: "September 2026",
     body: [
@@ -50,7 +50,7 @@ const essays: Essay[] = [
 
 const throwaway: Essay[] = [
   {
-    slug: "why-to-study-computer-science",
+    slug: "cs",
     title: "Why to Study Computer Science",
     date: "June 2024",
     body: [
