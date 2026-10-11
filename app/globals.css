@@ -188,6 +188,31 @@ p {
   margin-bottom: 16px;
 }
 
+.translations {
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.translations li {
+  margin-bottom: 4px;
+}
+
+.translations li::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-right: 9px;
+  background: #777777;
+  vertical-align: middle;
+}
+
+.essay .translations a {
+  color: #000099;
+  text-decoration: underline;
+}
+
 .colophon {
   margin: 24px 0 0;
   color: #cccccc;
@@ -404,6 +429,39 @@ p {
     margin: -14px -16px 0;
     padding: 4px 34px 24px;
     background: #ffffff;
+  }
+
+  .translations {
+    margin: 32px -34px -24px;
+    padding: 0 20px 32px;
+    background: #f2f2f2;
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .translations li {
+    margin-bottom: 0;
+  }
+
+  .translations li + li {
+    margin-top: 12px;
+  }
+
+  .translations li::before {
+    display: none;
+  }
+
+  .essay .translations a {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    background: #ffffff;
+    border: 1px solid #d4d4d4;
+    color: #333333;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20px;
+    text-decoration: none;
   }
 
   .section-intro {

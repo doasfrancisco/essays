@@ -1,0 +1,48 @@
+{
+  "code_file": "doasfrancisco",
+  "project": "863b92f1",
+  "ignore": [],
+  "files": [
+    "CLAUDE.md",
+    "next-env.d.ts",
+    "next.config.ts",
+    "package-lock.json",
+    "package.json",
+    "tsconfig.json",
+    "app/globals.css",
+    "app/layout.tsx",
+    "app/page.tsx",
+    "app/essays/page.tsx",
+    "app/essays/[slug]/page.tsx",
+    "app/essays/[slug]/[lang]/page.tsx",
+    "app/throwaway/page.tsx",
+    "app/throwaway/[slug]/page.tsx",
+    "components/Categories.tsx",
+    "components/Colophon.tsx",
+    "components/EssayBody.tsx",
+    "components/EssayView.tsx",
+    "components/MobileHeader.tsx",
+    "components/RichText.tsx",
+    "components/SectionList.tsx",
+    "components/Shell.tsx",
+    "components/TranslationView.tsx",
+    "components/Translations.tsx",
+    "components/Wordmark.tsx",
+    "components/nav-items.ts",
+    "content/essays.ts"
+  ],
+  "humans": [
+    {
+      "name": "doasfrancisco",
+      "place": ""
+    },
+    {
+      "name": "human_part1",
+      "place": "content"
+    },
+    {
+      "name": "why_cs",
+      "place": "content"
+    }
+  ]
+}

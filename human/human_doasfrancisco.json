@@ -1,0 +1,68 @@
+{
+  "code_file": "doasfrancisco",
+  "explanations": [
+    {
+      "id": 1,
+      "block": "project",
+      "block_lines": [],
+      "text": "4. Every word lives in [one content file](content/essays.ts): the two sections and their essays.\n\n\nwebsite:\n    shows in home the two newest essays and the Catafract banner.\n    shows:\n        [/essays](app/essays/page.tsx)\n        [/throwaway](app/throwaway/page.tsx)\n    \n\n[essays have](components/EssayView.tsx):\n        title, date, paragraphs, quotes, notes; \n        [links in the text](components/RichText.tsx) become real links.\n\n        translation sections use the designs: \"translations mobile\" and \"translations desktop\" from paper design\n\n[draw ](components/Shell.tsx) under the page:\n    [wordmark](components/Wordmark.tsx), \n    the side buttons from [the menu list](components/nav-items.ts), \n    and [the categories](components/Categories.tsx) \n   - on a phone \u2192 [the slide-in menu](components/MobileHeader.tsx)\n   - on the home page only \u2192 [the copyright line](components/Colophon.tsx)\n\n\nif websited visited: \n    [vercel analytics](app/layout.tsx) counts the visit.",
+      "anchors": [
+        {
+          "words": "one content file",
+          "file": "content/essays.ts"
+        },
+        {
+          "words": "/essays",
+          "file": "app/essays/page.tsx"
+        },
+        {
+          "words": "/throwaway",
+          "file": "app/throwaway/page.tsx"
+        },
+        {
+          "words": "essays have",
+          "file": "components/EssayView.tsx"
+        },
+        {
+          "words": "links in the text",
+          "file": "components/RichText.tsx"
+        },
+        {
+          "words": "draw",
+          "file": "components/Shell.tsx"
+        },
+        {
+          "words": "wordmark",
+          "file": "components/Wordmark.tsx"
+        },
+        {
+          "words": "the menu list",
+          "file": "components/nav-items.ts"
+        },
+        {
+          "words": "the categories",
+          "file": "components/Categories.tsx"
+        },
+        {
+          "words": "the slide-in menu",
+          "file": "components/MobileHeader.tsx"
+        },
+        {
+          "words": "the copyright line",
+          "file": "components/Colophon.tsx"
+        },
+        {
+          "words": "vercel analytics",
+          "file": "app/layout.tsx"
+        }
+      ],
+      "verbatim": {
+        "origin": "4. Every word lives in one content file: the two sections and their essays.\n\n\nwebsite:\n    shows in home the two newest essays and the Catafract banner.\n    shows:\n        /essays\n        /throwaway\n    \n\nessays have:\n        title, date, paragraphs, quotes, notes; \n        links in the text become real links.\n\n        translation sections use the designs: \"translations mobile\" and \"translations desktop\" from paper design\n\ndraw  under the page:\n    wordmark, \n    the side buttons from the menu list, \n    and the categories \n   - on a phone \u2192 the slide-in menu\n   - on the home page only \u2192 the copyright line\n\n\nif websited visited: \n    vercel analytics counts the visit."
+      }
+    }
+  ],
+  "not_covered": {
+    "code_lines": [],
+    "blank_lines": []
+  }
+}

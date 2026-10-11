@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getEssay } from "@/content/essays";
-import RichText from "./RichText";
+import EssayBody from "./EssayBody";
+import Translations from "./Translations";
 
 export default function EssayView({
   sectionSlug,
@@ -12,29 +13,16 @@ export default function EssayView({
   const essay = getEssay(sectionSlug, essaySlug);
   if (!essay) notFound();
 
+  const translations = (essay.translations ?? []).map((translation) => ({
+    href: `/${sectionSlug}/${essaySlug}/${translation.slug}`,
+    label: translation.label
+  }));
+
   return (
     <article className="essay">
       <h1 className="essay-title">{essay.title}</h1>
       <p className="essay-date">{essay.date}</p>
-      {essay.body.map((block, index) =>
-        block.type === "quote" ? (
-          <blockquote key={index} className="pullquote">
-            <RichText text={block.text} />
-          </blockquote>
-        ) : block.type === "lead" ? (
-          <p key={index}>
-            <strong>{block.lead}</strong> <RichText text={block.text} />
-          </p>
-        ) : block.type === "thanks" ? (
-          <p key={index} className="thanks">
-            <strong>Thanks</strong> <RichText text={block.text} />
-          </p>
-        ) : (
-          <p key={index}>
-            <RichText text={block.text} />
-          </p>
-        )
-      )}
+      <EssayBody blocks={essay.body} />
       {essay.notes ? (
         <div className="notes">
           <p className="notes-title">Notes</p>
@@ -43,6 +31,7 @@ export default function EssayView({
           ))}
         </div>
       ) : null}
+      <Translations items={translations} />
     </article>
   );
 }
