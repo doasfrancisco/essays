@@ -5,7 +5,9 @@ export default function EssayBody({ blocks }: { blocks: Block[] }) {
   return (
     <>
       {blocks.map((block, index) =>
-        block.type === "quote" ? (
+        block.type === "gap" ? (
+          <div key={index} className="gap" />
+        ) : block.type === "quote" ? (
           <blockquote key={index} className="pullquote">
             <RichText text={block.text} />
           </blockquote>

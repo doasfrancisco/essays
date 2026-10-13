@@ -172,6 +172,10 @@ p {
   margin: 0 24px 16px;
 }
 
+.gap {
+  height: 16px;
+}
+
 .essay a {
   color: inherit;
 }
@@ -423,6 +427,10 @@ p {
 
   .essay .thanks {
     margin-top: 32px;
+  }
+
+  .gap {
+    height: 21px;
   }
 
   .essay {

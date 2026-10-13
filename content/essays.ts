@@ -1,4 +1,4 @@
-export type Block = { type: "p" | "quote" | "thanks" | "lead"; text: string; lead?: string };
+export type Block = { type: "p" | "quote" | "thanks" | "lead" | "gap"; text: string; lead?: string };
 
 export type Translation = {
   slug: string;
@@ -31,6 +31,7 @@ const p = (text: string): Block => ({ type: "p", text });
 const quote = (text: string): Block => ({ type: "quote", text });
 const thanks = (text: string, leadText = "Thanks"): Block => ({ type: "thanks", lead: leadText, text });
 const lead = (leadText: string, text: string): Block => ({ type: "lead", lead: leadText, text });
+const gap = (): Block => ({ type: "gap", text: "" });
 
 const essays: Essay[] = [
   {
@@ -68,6 +69,8 @@ const essays: Essay[] = [
           p("Durante los últimos meses he estado diseñando un nuevo lenguaje de programación que sobreviva a una superinteligencia. Una tarea bastante intimidante que la programación actual me obligó a intentar."),
           p("Y en este camino encontré tres razones por las que los lenguajes de programación ya no funcionan como antes:"),
           p("Carecen de una estructura que escale entender, no escalan buscar información y fuerzan una capa de abstracción fija."),
+          gap(),
+          gap(),
           p("Estos no eran problemas cuando los lenguajes eran usados solo por humanos. Antes, programar significaba entender lo que yo escribía. Ahora que la IA escribe código en un volumen exponencial, es más fácil pedirle que escriba y explique su código."),
           p("Sin embargo, a largo plazo esto ha delegado mi entendimiento a la IA. Peor aún, no puedo volver atrás porque programar a mano ya no es eficiente. Describirle a la IA lo que quiero siempre parece más rápido que escribir líneas de código."),
           p("Esto me hizo pensar que un nuevo lenguaje era imposible. No importaba qué reglas de diseño se me ocurrieran, siempre podía imaginar un escenario en el que no entendería el código por la cantidad infinita de líneas que escribiría la IA."),
@@ -82,6 +85,8 @@ const essays: Essay[] = [
           p("Sea cual sea el alcance de abstracción que diseñes para un lenguaje, la IA producirá infinitas líneas de código en ese nivel y superará tu capacidad para entenderlo."),
           p("Estos tres problemas: entender código a escala, buscar información rápido en el código base y las capas fijas de abstracción, deben resolverse. Dejar sin resolver aunque sea una basta para que un nuevo lenguaje sea inutilizable. Aunque es curioso que, después de resolver los tres, puedo decir que en teoría solo necesitaba resolver cualquiera de ellos para resolverlos todos."),
           p("¿Pero estos problemas realmente tienen solución? Y si la tienen, ¿cómo empezamos a resolverlos?"),
+          gap(),
+          gap(),
           p("Por suerte, en 2003, Paul Graham, en su ensayo [“El lenguaje de los cien años”](https://paulgraham.com/hundred.html) (“The Hundred-Year Language”), propuso las dos ideas de diseño simples que yo necesitaría para crear mi nuevo lenguaje."),
           p("La primera idea es:"),
           quote("Una forma de diseñar un lenguaje es simplemente escribir el programa que te gustaría poder escribir, sin importar si existe un compilador que pueda traducirlo o hardware que pueda ejecutarlo."),
