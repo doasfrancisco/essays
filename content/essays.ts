@@ -129,3 +129,54 @@ export function getTranslation(sectionSlug: string, essaySlug: string, lang: str
 }
 
 export const latest = { section: sections[0], essay: essays[0] };
+
+export type Page = {
+  slug: string;
+  title: string;
+  description: string;
+  body: Block[];
+};
+
+export const pages: Page[] = [
+  {
+    slug: "about",
+    title: "About",
+    description: "Who writes doasfrancisco, what the two sections hold, and how an agent can read them.",
+    body: [
+      p("doasfrancisco is a personal writing site. It holds essays about programming language design, artificial intelligence, and the tools people use to keep understanding code when a machine writes most of it."),
+      p("The site has two sections. [Essays](/essays) holds finished writing. Each essay keeps the date it was written, and some essays also have a Spanish translation, because many readers of this site read Spanish first. [Throwaway](/throwaway) holds older writing that is kept but is not meant to be read; it stays online because deleting it would hide how the thinking moved."),
+      p("The writing comes from one line of work: a new programming language that stays usable when artificial intelligence writes an unlimited number of lines. That work asks three questions, and the essays answer them one at a time. The first question is how a language can scale understanding. The second is how a person finds the code to change without asking a machine to find it. The third is why a fixed layer of abstraction stops working when code becomes unlimited."),
+      p("The author also builds software with [Catafract](https://www.catafract.com/). If you want to work together, or if you want to tell the author that an essay is wrong, the [contact](/contact) page tells you how."),
+      p("This site is plain HTML with no tracking of people. The [privacy](/privacy) page says exactly what the site measures. Every page also answers in Markdown when a reader or an agent asks for Markdown, and [/llms.txt](/llms.txt) lists every page an agent should read.")
+    ]
+  },
+  {
+    slug: "contact",
+    title: "Contact",
+    description: "How to reach doasfrancisco by email, through Catafract, or on LinkedIn.",
+    body: [
+      p("Email is the best way to reach the author. Write to [admin@catafract.com](mailto:admin@catafract.com) and say which essay you read, because the answer is usually faster when the subject names the essay."),
+      lead("Work together.", "The author builds software with Catafract. If you want to start a project, write through the [Catafract site](https://www.catafract.com/) or send the same email, and describe what you want to build, when you need it, and who else is on the team."),
+      lead("Correct an essay.", "If an essay says something false, write and name the sentence. Corrections are made in the text itself, not in a note at the end, so the page stays easy to read. The same rule applies to the Spanish translations: if a translation reads worse than the English, the author wants to know."),
+      lead("Follow the work.", "Catafract publishes on [LinkedIn](https://www.linkedin.com/company/catafract). New essays appear on the [home page](/) first, and then in the [essays](/essays) list."),
+      p("The author reads every message but does not answer every message on the same day. There is no newsletter, no form that asks for a phone number, and no account to create to write here.")
+    ]
+  },
+  {
+    slug: "privacy",
+    title: "Privacy",
+    description: "What doasfrancisco measures, what it does not collect, and who sees the data.",
+    body: [
+      p("This site is a set of pages of text. It does not ask you who you are. There is no account, no login, no newsletter, no comment box, and no advertising."),
+      lead("What is measured.", "The site uses Vercel Analytics to count page views. It counts a visit without cookies and without an identifier that follows you from one site to the next. The author sees how many people opened a page and which page they came from. The author cannot see who you are from that count."),
+      lead("What the host keeps.", "The pages are served by Vercel. Like every web server, it writes a short technical log of each request, which includes the address of the request and the page asked for. That log belongs to the host and is used to serve the pages and to stop abuse."),
+      lead("What you send.", "If you write to the email on the [contact](/contact) page, the author keeps that message in a mailbox to answer it. The author does not add your address to any list and does not give it to anybody else."),
+      lead("Agents and Markdown.", "An agent can ask any page for Markdown with the header Accept: text/markdown. That request is measured like any other page view, and nothing more is stored."),
+      p("If you want a message you sent to be deleted, write again and ask for it. If this page changes, the change applies to what the site does from that day forward.")
+    ]
+  }
+];
+
+export function getPage(slug: string) {
+  return pages.find((page) => page.slug === slug);
+}

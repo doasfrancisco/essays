@@ -1,0 +1,68 @@
+{
+  "code_file": "agentic",
+  "explanations": [
+    {
+      "id": 1,
+      "block": "agentic",
+      "block_lines": [],
+      "text": "Improve how ready https://doasfrancisco.com is for agents.\n\nCurrent Is Agentic score: 53/100 (Is Agentic readiness model based on Ora audit evidence).\n\nImplement the following fixes in priority order (failures first, then warnings):\n\n1. [Content is available without JavaScript](app/page.tsx) (Essential, Failed)\nEvidence: Very little text content (151 chars) - likely JS-rendered, invisible to AI crawlers\nRecommended fix: Serve at least 500 characters of meaningful homepage content in raw HTML. Add a clear H1, keep deeper heading levels sequential, and remove excessive non-content markup.\nCurrent result: Failed.\n\n2. [Agent-friendly 404s](app/md/[[...path]]/route.ts) (Essential, Partial)\nEvidence: The nonexistent path https://doasfrancisco.com/__ora-404-probe-fpmkq74p correctly returns HTTP 404. Partial credit: no Markdown error body was detected.\nRecommended fix: Keep the correct HTTP 404 status. The remaining requirement is a Markdown error body when agents request Accept: text/markdown. Include at least 20 characters explaining the error and a link to your docs, sitemap, or llms.txt. Verify with `curl -sS -L -i -H 'Accept: text/markdown' https://yourdomain.com/some-path-that-does-not-exist`. Check both the final 404 status and the Markdown body with Content-Type: text/markdown. Checking the status alone does not verify the missing requirement.\nCurrent result: Partial (50%).\n\n3. [Markdown content negotiation](proxy.ts) (acceptmarkdown.com) (Essential, Failed)\nEvidence: Homepage https://doasfrancisco.com does not meet the Markdown negotiation requirements: Accept: text/markdown returned text/html; charset=utf-8; Vary header missing Accept (got \"rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch\")\nRecommended fix: Enable Markdown negotiation on the scanned homepage. Supporting it only on `/docs` or a separate .md URL does not satisfy this check. Requests with Accept: text/markdown must receive a [nonempty Markdown body](lib/markdown.ts) with Content-Type: text/markdown and Vary: Accept. Keep serving HTML for Accept: text/html. Adding Vary alone does not create a Markdown response. Verify both with `curl -sS -L -i -H 'Accept: text/markdown' https://yourdomain.com/` and `curl -sS -L -i -H 'Accept: text/html' https://yourdomain.com/`. Check the final response headers and body: Markdown with Vary: Accept for the first request, HTML for the second.\nCurrent result: Failed.\n\n4. [Brand name discoverability](app/layout.tsx) (Recommended, Failed)\nEvidence: doasfrancisco.com was not in the top 10 for \"doasfrancisco\" (searched your brand name alone: no main product term from your homepage qualified)\nRecommended fix: Make sure your own domain ranks in the top results when people search your brand together with your main product (for example \"Acme payments API\"). If it does not, your brand may be too generic, conflict with a more established term, or not yet indexed. Strengthen it by describing your main product clearly in your homepage title and headings, earning press mentions that link to your domain, and avoiding redirect chains that mask your main domain in search results.\nCurrent result: Failed.\n\n5. JSON-LD structured data (Recommended, Failed)\nEvidence: [No JSON-LD structured data found on homepage](components/StructuredData.tsx)\nRecommended fix: Add JSON-LD structured data to your homepage using the identity type that matches your site - SoftwareApplication for products, Organization or LocalBusiness for companies, Person for personal sites, Article for blogs - with name, description, url, and type-appropriate fields (offers, sameAs, author) so AI can parse your identity programmatically.\nCurrent result: Failed.\n\n6. [Agent instruction / when-to-use](app/llms.txt/route.ts) (Recommended, Failed)\nEvidence: No agent instruction file with when-to-use guidance found\nRecommended fix: Tell agents when to reach for you: add a 'when to use this' section to your llms.txt (or a dedicated agent-instructions file) that names your best-fit use cases and how an agent should call you. Be specific about the jobs you are right for - generic marketing copy does not read as guidance.\nCurrent result: Failed.\n\n7. [Sitemap exists](app/sitemap.ts) (Recommended, Failed)\nEvidence: No sitemap found\nRecommended fix: Add a valid XML sitemap at `/sitemap.xml` listing all indexable URLs. Include lastmod dates and keep it under 50MB.\nCurrent result: Failed.\n\n8. [Organization schema completeness](content/site.ts) (Recommended, Failed)\nEvidence: No JSON-LD found - Organization schema missing\nRecommended fix: Add Organization JSON-LD that includes both contactPoint (with email/phone and contactType) and address (PostalAddress). This lets AI verify your business legitimacy and answer contact queries.\nCurrent result: Failed.\n\n9. [Trust anchor pages](app/about/page.tsx) (Recommended, Failed)\nEvidence: No trust anchor pages found with sufficient content (About, Contact, Privacy)\nRecommended fix: Publish real `/about`, `/contact`, and `/privacy` pages with at least 500 characters of content each. These are the pages AI agents check to verify your business is legitimate before recommending you.\nCurrent result: Failed.\n\n10. [Metadata completeness](app/layout.tsx) (Recommended, Partial)\nEvidence: Only 1/4 metadata signals present - missing: canonical URL, og:image, og:type\nRecommended fix: Add all four signals to your homepage: <link rel=\"canonical\">, <html lang=\"...\">, <meta property=\"og:image\">, and <meta property=\"og:type\">. Agents use these for entity resolution and attribution.\nCurrent result: Partial (50%).\n\nRequirements:\n- Inspect the existing codebase before changing files.\n- Follow each published protocol or file format exactly.\n- Preserve existing product behavior and visual design.\n- [Add or update tests](tests/markdown.test.ts) for every behavior you change.\n- Verify every public endpoint and machine-readable file after implementation.\n- Finish with a concise change summary, verification results, and any remaining recommendations that require product decisions or credentials.",
+      "anchors": [
+        {
+          "words": "Content is available without JavaScript",
+          "file": "app/page.tsx"
+        },
+        {
+          "words": "Agent-friendly 404s",
+          "file": "app/md/[[...path]]/route.ts"
+        },
+        {
+          "words": "Markdown content negotiation",
+          "file": "proxy.ts"
+        },
+        {
+          "words": "nonempty Markdown body",
+          "file": "lib/markdown.ts"
+        },
+        {
+          "words": "Brand name discoverability",
+          "file": "app/layout.tsx"
+        },
+        {
+          "words": "No JSON-LD structured data found on homepage",
+          "file": "components/StructuredData.tsx"
+        },
+        {
+          "words": "Agent instruction / when-to-use",
+          "file": "app/llms.txt/route.ts"
+        },
+        {
+          "words": "Sitemap exists",
+          "file": "app/sitemap.ts"
+        },
+        {
+          "words": "Organization schema completeness",
+          "file": "content/site.ts"
+        },
+        {
+          "words": "Trust anchor pages",
+          "file": "app/about/page.tsx"
+        },
+        {
+          "words": "Metadata completeness",
+          "file": "app/layout.tsx"
+        },
+        {
+          "words": "Add or update tests",
+          "file": "tests/markdown.test.ts"
+        }
+      ],
+      "verbatim": {
+        "origin": "Improve how ready https://doasfrancisco.com is for agents.\n\nCurrent Is Agentic score: 53/100 (Is Agentic readiness model based on Ora audit evidence).\n\nImplement the following fixes in priority order (failures first, then warnings):\n\n1. Content is available without JavaScript (Essential, Failed)\nEvidence: Very little text content (151 chars) - likely JS-rendered, invisible to AI crawlers\nRecommended fix: Serve at least 500 characters of meaningful homepage content in raw HTML. Add a clear H1, keep deeper heading levels sequential, and remove excessive non-content markup.\nCurrent result: Failed.\n\n2. Agent-friendly 404s (Essential, Partial)\nEvidence: The nonexistent path https://doasfrancisco.com/__ora-404-probe-fpmkq74p correctly returns HTTP 404. Partial credit: no Markdown error body was detected.\nRecommended fix: Keep the correct HTTP 404 status. The remaining requirement is a Markdown error body when agents request Accept: text/markdown. Include at least 20 characters explaining the error and a link to your docs, sitemap, or llms.txt. Verify with `curl -sS -L -i -H 'Accept: text/markdown' https://yourdomain.com/some-path-that-does-not-exist`. Check both the final 404 status and the Markdown body with Content-Type: text/markdown. Checking the status alone does not verify the missing requirement.\nCurrent result: Partial (50%).\n\n3. Markdown content negotiation (acceptmarkdown.com) (Essential, Failed)\nEvidence: Homepage https://doasfrancisco.com does not meet the Markdown negotiation requirements: Accept: text/markdown returned text/html; charset=utf-8; Vary header missing Accept (got \"rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch\")\nRecommended fix: Enable Markdown negotiation on the scanned homepage. Supporting it only on `/docs` or a separate .md URL does not satisfy this check. Requests with Accept: text/markdown must receive a nonempty Markdown body with Content-Type: text/markdown and Vary: Accept. Keep serving HTML for Accept: text/html. Adding Vary alone does not create a Markdown response. Verify both with `curl -sS -L -i -H 'Accept: text/markdown' https://yourdomain.com/` and `curl -sS -L -i -H 'Accept: text/html' https://yourdomain.com/`. Check the final response headers and body: Markdown with Vary: Accept for the first request, HTML for the second.\nCurrent result: Failed.\n\n4. Brand name discoverability (Recommended, Failed)\nEvidence: doasfrancisco.com was not in the top 10 for \"doasfrancisco\" (searched your brand name alone: no main product term from your homepage qualified)\nRecommended fix: Make sure your own domain ranks in the top results when people search your brand together with your main product (for example \"Acme payments API\"). If it does not, your brand may be too generic, conflict with a more established term, or not yet indexed. Strengthen it by describing your main product clearly in your homepage title and headings, earning press mentions that link to your domain, and avoiding redirect chains that mask your main domain in search results.\nCurrent result: Failed.\n\n5. JSON-LD structured data (Recommended, Failed)\nEvidence: No JSON-LD structured data found on homepage\nRecommended fix: Add JSON-LD structured data to your homepage using the identity type that matches your site - SoftwareApplication for products, Organization or LocalBusiness for companies, Person for personal sites, Article for blogs - with name, description, url, and type-appropriate fields (offers, sameAs, author) so AI can parse your identity programmatically.\nCurrent result: Failed.\n\n6. Agent instruction / when-to-use (Recommended, Failed)\nEvidence: No agent instruction file with when-to-use guidance found\nRecommended fix: Tell agents when to reach for you: add a 'when to use this' section to your llms.txt (or a dedicated agent-instructions file) that names your best-fit use cases and how an agent should call you. Be specific about the jobs you are right for - generic marketing copy does not read as guidance.\nCurrent result: Failed.\n\n7. Sitemap exists (Recommended, Failed)\nEvidence: No sitemap found\nRecommended fix: Add a valid XML sitemap at `/sitemap.xml` listing all indexable URLs. Include lastmod dates and keep it under 50MB.\nCurrent result: Failed.\n\n8. Organization schema completeness (Recommended, Failed)\nEvidence: No JSON-LD found - Organization schema missing\nRecommended fix: Add Organization JSON-LD that includes both contactPoint (with email/phone and contactType) and address (PostalAddress). This lets AI verify your business legitimacy and answer contact queries.\nCurrent result: Failed.\n\n9. Trust anchor pages (Recommended, Failed)\nEvidence: No trust anchor pages found with sufficient content (About, Contact, Privacy)\nRecommended fix: Publish real `/about`, `/contact`, and `/privacy` pages with at least 500 characters of content each. These are the pages AI agents check to verify your business is legitimate before recommending you.\nCurrent result: Failed.\n\n10. Metadata completeness (Recommended, Partial)\nEvidence: Only 1/4 metadata signals present - missing: canonical URL, og:image, og:type\nRecommended fix: Add all four signals to your homepage: <link rel=\"canonical\">, <html lang=\"...\">, <meta property=\"og:image\">, and <meta property=\"og:type\">. Agents use these for entity resolution and attribution.\nCurrent result: Partial (50%).\n\nRequirements:\n- Inspect the existing codebase before changing files.\n- Follow each published protocol or file format exactly.\n- Preserve existing product behavior and visual design.\n- Add or update tests for every behavior you change.\n- Verify every public endpoint and machine-readable file after implementation.\n- Finish with a concise change summary, verification results, and any remaining recommendations that require product decisions or credentials."
+      }
+    }
+  ],
+  "not_covered": {
+    "code_lines": [],
+    "blank_lines": []
+  }
+}

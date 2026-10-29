@@ -8,13 +8,25 @@
     "next.config.ts",
     "package-lock.json",
     "package.json",
+    "proxy.ts",
     "tsconfig.json",
+    "tsconfig.tsbuildinfo",
     "app/globals.css",
+    "app/icon.svg",
     "app/layout.tsx",
+    "app/not-found.tsx",
+    "app/opengraph-image.tsx",
     "app/page.tsx",
+    "app/robots.ts",
+    "app/sitemap.ts",
+    "app/about/page.tsx",
+    "app/contact/page.tsx",
     "app/essays/page.tsx",
     "app/essays/[slug]/page.tsx",
     "app/essays/[slug]/[lang]/page.tsx",
+    "app/llms.txt/route.ts",
+    "app/md/[[...path]]/route.ts",
+    "app/privacy/page.tsx",
     "app/throwaway/page.tsx",
     "app/throwaway/[slug]/page.tsx",
     "components/Categories.tsx",
@@ -22,16 +34,30 @@
     "components/EssayBody.tsx",
     "components/EssayView.tsx",
     "components/MobileHeader.tsx",
+    "components/PageView.tsx",
     "components/RichText.tsx",
     "components/SectionList.tsx",
     "components/Shell.tsx",
+    "components/StructuredData.tsx",
     "components/TranslationView.tsx",
     "components/Translations.tsx",
     "components/Wordmark.tsx",
     "components/nav-items.ts",
-    "content/essays.ts"
+    "content/essays.ts",
+    "content/site.ts",
+    "lib/dates.ts",
+    "lib/markdown.ts",
+    "lib/negotiate.ts",
+    "public/drawing.svg",
+    "public/logo.svg",
+    "tests/markdown.test.ts",
+    "tests/negotiate.test.ts"
   ],
   "humans": [
+    {
+      "name": "agentic",
+      "place": ""
+    },
     {
       "name": "doasfrancisco",
       "place": ""
@@ -44,5 +70,24 @@
       "name": "why_cs",
       "place": "content"
     }
+  ],
+  "folders": [
+    "app",
+    "app/about",
+    "app/contact",
+    "app/essays",
+    "app/essays/[slug]",
+    "app/essays/[slug]/[lang]",
+    "app/llms.txt",
+    "app/md",
+    "app/md/[[...path]]",
+    "app/privacy",
+    "app/throwaway",
+    "app/throwaway/[slug]",
+    "components",
+    "content",
+    "lib",
+    "public",
+    "tests"
   ]
 }

@@ -86,7 +86,7 @@ p {
   height: 34px;
 }
 
-.content > .banner:first-child {
+.content > .banner:first-of-type {
   margin-top: 22px;
 }
 
@@ -526,4 +526,17 @@ p {
   .colophon {
     display: none;
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
